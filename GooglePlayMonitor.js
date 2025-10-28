@@ -11,8 +11,8 @@ function main() {
     app.launch(googlePlayPkg);
     sleep(5000);
 
-    // 等待搜索框出现
-    let searchIcon = textContains("Search").findOne(10000);
+    // 尝试通过描述符查找搜索框
+    let searchIcon = descContains("Search").findOne(10000);
     if (!searchIcon) {
         console.error("未找到搜索按钮，请确保设备登录了 Google Play！");
         return;
