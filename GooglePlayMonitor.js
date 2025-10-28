@@ -10,16 +10,13 @@ function main() {
     // 启动 Google Play
     app.launch(googlePlayPkg);
     sleep(5000);
+   
+    // 根据 bounds 坐标点击
+    let centerX = 450;
+    let centerY = 1216;
 
-    // 尝试通过描述符查找搜索框    
-    let searchBtn = className("android.view.View").desc("ikn").findOne(10000);
-    if (!searchBtn) {
-        console.error("未找到搜索按钮，请确保设备登录了 Google Play！");
-        return;
-    }
-
-    console.log("点击搜索按钮...");
-    searchBtn.click();
+    console.log("根据坐标点击搜索按钮...");
+    click(centerX, centerY);
     sleep(2000);
 
     // 输入包名
