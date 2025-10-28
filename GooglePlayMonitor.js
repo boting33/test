@@ -11,15 +11,15 @@ function main() {
     app.launch(googlePlayPkg);
     sleep(5000);
 
-    // 尝试通过描述符查找搜索框
-    let searchIcon = descContains("Search").findOne(10000);
-    if (!searchIcon) {
+    // 尝试通过描述符查找搜索框    
+    let searchBtn = className("android.view.View").desc("ikn").findOne(10000);
+    if (!searchBtn) {
         console.error("未找到搜索按钮，请确保设备登录了 Google Play！");
         return;
     }
 
     console.log("点击搜索按钮...");
-    searchIcon.click();
+    searchBtn.click();
     sleep(2000);
 
     // 输入包名
