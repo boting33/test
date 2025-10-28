@@ -1,11 +1,3 @@
-/**
- * GooglePlayMonitor.js
- * 功能：打开 Google Play，搜索应用并提取版本号
- * 使用方式：
- *    在 AutoJs6 中运行脚本
- *    修改变量 pkgName 为你要查询的包名（例如 com.whatsapp）
- */
-
 // ========== 可配置参数 ==========
 const pkgName = "com.whatsapp";  // 想查询的包名
 const googlePlayPkg = "com.android.vending"; // Google Play 包名
