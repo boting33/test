@@ -7,7 +7,7 @@
  */
 
 // ========== 可配置参数 ==========
-const pkgName = "com.roblox.client";  // 想查询的包名
+const pkgName = "com.bbgame.sgzapk.tw";  // 想查询的包名
 const googlePlayPkg = "com.android.vending"; // Google Play 包名
 
 // ========== 主逻辑 ==========
@@ -61,17 +61,19 @@ function main() {
 
     // 循环滚动查找文本
     let appDetail = null;
-    let maxScrollTimes = 10; // 最多滚动10次
+    // 最多滚动10次
+    let maxScrollTimes = 10; 
     for (let i = 0; i < maxScrollTimes; i++) {
         appDetail = text("关于此应用").findOne(1000);
         if (!appDetail) {
             appDetail = textContains("关于此游戏").findOne(1000);
         }
         if (appDetail) {
-            console.log("找到元素:", appDetail.text());
+            console.log("找到元素关于此应用/游戏");
             break;
         }
-        scrollableArea.scrollForward(); // 向下滚动
+        // 向下滚动
+        scrollableArea.scrollForward(); 
         sleep(500);
     }
 
@@ -79,7 +81,6 @@ function main() {
         console.error("未找到“关于此应用/游戏”");
     } else {
         let appDetailParent = appDetail.parent();
-        console.log("appDetailParent:", appDetailParent.toString());
         appDetailParent.click();
     }
 
