@@ -58,7 +58,7 @@ function main() {
     sleep(4000);
 
     // 查找 "版本"
-    let versionLabel = id("0_resource_name_obfuscated").className("android.widget.TextView").text("版本").depth(21).findOne();
+    let versionLabel = id("0_resource_name_obfuscated").className("android.widget.TextView").text("版本").depth(21).findOne(5000);
 
     if (versionLabel) {
         let parent = versionLabel.parent();
