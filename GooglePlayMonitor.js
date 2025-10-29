@@ -19,9 +19,7 @@ function main() {
     app.launch(googlePlayPkg);
     sleep(5000);
 
-    console.log("Google Play启动完成");
-
-    // 尝试通过描述符查找搜索框
+    // 尝试通过文本查找搜索框
     let searchIcon = text("搜索").findOne(5000);
     if (!searchIcon) {
         console.error("未找到搜索按钮，请确保设备登录了 Google Play！");
@@ -30,12 +28,16 @@ function main() {
 
     console.log("已找到搜索按钮");
 
-    className("android.widget.TextView").text("搜索应用和游戏").findOne()
-
-    console.log("点击搜索按钮...");
-    searchIcon.click();
-    sleep(2000);
-
+    // 找到搜索按钮的父布局并点击
+    let parentLayout = searchIcon.parent();
+    if (parentLayout) {
+        console.log("点击搜索按钮的父布局...");
+        parentLayout.click();
+        sleep(2000);
+    } else {
+        console.error("未找到搜索按钮的父布局");
+        return;
+    }
 
     // 输入包名
     console.log("输入包名: " + pkgName);
