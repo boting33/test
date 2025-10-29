@@ -7,7 +7,7 @@
  */
 
 // ========== 可配置参数 ==========
-const pkgName = "com.whatsapp";  // 想查询的包名
+const pkgName = "com.roblox.client";  // 想查询的包名
 const googlePlayPkg = "com.android.vending"; // Google Play 包名
 
 // ========== 主逻辑 ==========
