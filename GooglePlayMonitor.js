@@ -20,11 +20,13 @@ function main() {
     sleep(5000);
 
     // 尝试通过描述符查找搜索框
-    let searchIcon = text("搜索").findOne(10000);
+    let searchIcon = text("搜索").findOne(5000);
     if (!searchIcon) {
         console.error("未找到搜索按钮，请确保设备登录了 Google Play！");
         return;
     }
+
+    console.log("已找到搜索按钮");
 
     className("android.widget.TextView").text("搜索应用和游戏").findOne()
 
