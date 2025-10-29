@@ -29,9 +29,7 @@ function main() {
     sleep(2000);
 
     let searchBox = text("搜索应用和游戏").findOne(5000);
-    console.log("searchBox..." + searchBox.toString());
     let searchBoxParent = searchBox.parent();
-    console.log("searchBoxParent..." + searchBoxParent.toString());
     searchBoxParent.click();
     sleep(2000);
     
@@ -40,7 +38,7 @@ function main() {
     let searchContent = className("android.widget.EditText").findOne(5000)
     searchContent.setText(pkgName);
     sleep(1000);
-    press("enter");
+    searchContent.press("enter");
     sleep(5000);
 
     // 查找“安装”或“更新”等按钮
