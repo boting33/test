@@ -136,7 +136,7 @@ function searchAppInGooglePlay(appPackageName) {
  * 查找搜索按钮
  */
 function findSearchButton() {
-    var keyword = "搜索"; // Google Play 使用中文的搜索按钮
+    var keyword = this.isChineseLanguage() ? "搜索" : "Search";
     console.log("查找搜索按钮，使用关键词: " + keyword);
 
     var element = descContains(keyword).findOne(3000);
