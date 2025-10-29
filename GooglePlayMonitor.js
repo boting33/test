@@ -52,12 +52,8 @@ function main() {
         console.error("未找到第一个搜索结果应用");
     }
 
-    let appDetail = text("关于此应用").findOne(5000);
-    console.log("appDetail1: " + appDetail.toString());
-    if (!appDetail) {
-        appDetail = text("关于此游戏").findOne(5000);
-        console.log("appDetail2: " + appDetail.toString());
-    }
+    let appDetail = text("关于此游戏").findOne(5000);
+    console.log("appDetai: " + appDetail.toString());
     appDetailParent = appDetail.parent();
     console.log("appDetailParent: " + appDetailParent.toString());
     appDetailParent.click();
