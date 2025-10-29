@@ -52,8 +52,9 @@ function main() {
         console.error("未找到第一个搜索结果应用");
     }
 
-    let appDetail = text("了解详情 关于此应用").findOne(5000);
-    appDetail.click();
+    let appDetail = text("关于此应用").findOne(5000);
+    appDetailParent = appDetail.parent();
+    appDetailParent.click();
     sleep(4000);
 
     // 查找 "版本" 或 "Version"
