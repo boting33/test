@@ -52,8 +52,25 @@ function main() {
         console.error("未找到第一个搜索结果应用");
     }
 
-    // 等待页面加载完成
+    let appDetail = text("了解详情 关于此应用").findOne(5000);
+    appDetail.click();
     sleep(4000);
+
+    // 查找 "版本" 或 "Version"
+    let versionLabel = textMatches(/版本|Version/i).findOne(5000);
+
+    if (versionLabel) {
+        let parent = versionLabel.parent();
+        if (parent && parent.childCount() >= 2) {
+            // 第二个子元素就是版本号
+            let versionText = parent.child(1).text();
+            console.log("应用版本号: " + versionText);
+        } else {
+            console.error("父节点子元素数量不足，无法获取版本号");
+        }
+    } else {
+        console.error("未找到版本字段");
+    }
 }
 
 // ========== 启动 ==========
