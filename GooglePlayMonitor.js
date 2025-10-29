@@ -53,7 +53,7 @@ function main() {
     sleep(8000); 
     let appDetail = text("关于此应用").findOne(5000);
     if (!appDetail) {
-        appDetail = text("关于此游戏").findOne(5000);
+        appDetail = textContains("关于此游戏").findOne(5000);
         console.log("appDetail: ");
         console.log(appDetail.toString());
     }
