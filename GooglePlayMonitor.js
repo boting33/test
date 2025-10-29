@@ -47,13 +47,15 @@ function main() {
     if (firstApp) {
         console.log("找到第一个应用卡片，准备点击...");
         firstApp.click();
-        sleep(5000); // 等待页面跳转到详情页
     } else {
         console.error("未找到第一个搜索结果应用");
     }
-    sleep(5000); 
-    let appDetail = text("关于此游戏").findOne(5000);
-    console.log("appDetai: " + appDetail.toString());
+    sleep(8000); 
+    let appDetail = text("关于此应用").findOne(5000);
+    if (!appDetail) {
+        appDetail = text("关于此游戏").findOne(5000);
+        console.log("appDetail2: " + appDetail.toString());
+    }
     appDetailParent = appDetail.parent();
     console.log("appDetailParent: " + appDetailParent.toString());
     appDetailParent.click();
