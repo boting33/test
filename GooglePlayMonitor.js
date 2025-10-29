@@ -35,43 +35,25 @@ function main() {
     
     // 输入包名
     console.log("输入包名: " + pkgName);
-    let searchContent = className("android.widget.EditText").findOne(5000)
+    let searchContent = className("android.widget.EditText").findOne(5000);
     searchContent.setText(pkgName);
     sleep(1000);
 
     console.log("执行输入法回车 imeEnter()");
     imeEnter();
-    
     sleep(5000);
 
-    // 查找“安装”或“更新”等按钮
-    let appPage = textMatches(/Install|Open|Update/).findOne(10000);
-    if (!appPage) {
-        console.error("未找到应用页面，请检查包名是否正确。");
-        return;
+    let firstApp = className("android.view.View").clickable(true).findOne(8000);
+    if (firstApp) {
+        console.log("找到第一个应用卡片，准备点击...");
+        firstApp.click();
+        sleep(5000); // 等待页面跳转到详情页
+    } else {
+        console.error("未找到第一个搜索结果应用");
     }
 
     // 等待页面加载完成
     sleep(4000);
-
-    // 查找“版本”或“Version”字段（部分设备显示为“App info”或“About this app”）
-    let versionNode = textMatches(/Version|版本/).findOne(10000);
-    if (versionNode) {
-        let parent = versionNode.parent();
-        if (parent && parent.childCount() > 1) {
-            let versionText = parent.child(1).text();
-            console.info("应用版本号: " + versionText);
-            return;
-        }
-    }
-
-    // 如果没找到“版本”字段，尝试直接匹配数字格式
-    let versionCandidate = textMatches(/\d+\.\d+(\.\d+)?/).findOne(8000);
-    if (versionCandidate) {
-        console.info("推测的版本号: " + versionCandidate.text());
-    } else {
-        console.error("未能识别版本号，请确认页面结构。");
-    }
 }
 
 // ========== 启动 ==========
