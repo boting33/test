@@ -40,7 +40,7 @@ function main() {
     sleep(1000);
 
     console.log("按下回车键...");
-    key(66); 
+    KeyCode(66);
     sleep(5000);
 
     // 查找“安装”或“更新”等按钮
