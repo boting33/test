@@ -7,7 +7,7 @@
  */
 
 // ========== 可配置参数 ==========
-const pkgName = "com.bbgame.sgzapk.tw";  // 想查询的包名
+const pkgName = "com.roblox.client";  // 想查询的包名
 const googlePlayPkg = "com.android.vending"; // Google Play 包名
 
 // ========== 主逻辑 ==========
@@ -37,20 +37,20 @@ function main() {
     console.log("输入包名: " + pkgName);
     let searchContent = className("android.widget.EditText").findOne(5000);
     searchContent.setText(pkgName);
-    sleep(1000);
+    sleep(2000);
 
     console.log("执行输入法回车 imeEnter()");
     imeEnter();
-    sleep(5000);
+    sleep(2000);
 
-    let firstApp = className("android.view.View").clickable(true).findOne(8000);
+    let firstApp = className("android.view.View").clickable(true).findOne(5000);
     if (firstApp) {
         console.log("找到第一个应用卡片，准备点击...");
         firstApp.click();
     } else {
         console.error("未找到第一个搜索结果应用");
     }
-    sleep(5000); 
+    sleep(2000); 
 
     // 找到可滚动区域
     let scrollableArea = scrollable().findOne(5000);
@@ -66,7 +66,7 @@ function main() {
     for (let i = 0; i < maxScrollTimes; i++) {
         appDetail = text("关于此应用").findOne(1000);
         if (!appDetail) {
-            appDetail = textContains("关于此游戏").findOne(1000);
+            appDetail = textContains("关于此游戏").findOne(5000);
         }
         if (appDetail) {
             console.log("找到元素关于此应用/游戏");
@@ -84,7 +84,7 @@ function main() {
         appDetailParent.click();
     }
 
-    sleep(4000);
+    sleep(2000);
 
     // 查找 "版本"
     let versionLabel = id("0_resource_name_obfuscated").className("android.widget.TextView").text("版本").depth(21).findOne(5000);
