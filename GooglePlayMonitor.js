@@ -59,19 +59,9 @@ function main() {
 
     // 查找 "版本"
     let versionLabel = id("0_resource_name_obfuscated").className("android.widget.TextView").text("版本").depth(21).findOne(5000);
-
-    if (versionLabel) {
-        let parent = versionLabel.parent();
-        if (parent && parent.childCount() >= 2) {
-            // 第二个子元素就是版本号
-            let versionText = parent.child(1).text();
-            console.log("应用版本号: " + versionText);
-        } else {
-            console.error("父节点子元素数量不足，无法获取版本号");
-        }
-    } else {
-        console.error("未找到版本字段");
-    }
+    let versionLabelParent = versionLabel.parent();
+    let versionText = versionLabelParent.child(1).text();
+    console.log("应用版本号: " + versionText);
 }
 
 // ========== 启动 ==========
