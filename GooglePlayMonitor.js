@@ -36,9 +36,12 @@ function main() {
     // 输入包名
     console.log("输入包名: " + pkgName);
     let searchContent = className("android.widget.EditText").findOne(5000)
-    searchContent.setText(pkgName + "\n");
+    searchContent.setText(pkgName);
     sleep(1000);
-    console.log("输入回车");
+
+    console.log("按下回车键...");
+    searchContent.pressKey(KeyEvent.KEYCODE_ENTER);
+    sleep(5000);
 
     // 查找“安装”或“更新”等按钮
     let appPage = textMatches(/Install|Open|Update/).findOne(10000);
