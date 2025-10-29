@@ -19,6 +19,8 @@ function main() {
     app.launch(googlePlayPkg);
     sleep(5000);
 
+    console.log("Google Play启动完成");
+
     // 尝试通过描述符查找搜索框
     let searchIcon = text("搜索").findOne(5000);
     if (!searchIcon) {
