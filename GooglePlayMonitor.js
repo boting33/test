@@ -19,6 +19,14 @@ function main() {
     click(centerX, centerY);
     sleep(2000);
 
+    console.log("点击搜索页面搜索按钮...");
+    className("android.view.View").desc("在 Google Play 中搜索").findOne().click();
+    sleep(2000);
+
+    console.log("点击输入框位置...");
+    click(222, 104);
+    sleep(2000);
+
     // 输入包名
     console.log("输入包名: " + pkgName);
     setText(pkgName);
