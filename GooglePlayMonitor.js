@@ -38,6 +38,7 @@ function main() {
     let searchContent = className("android.widget.EditText").findOne(5000)
     searchContent.setText(pkgName + "\n");
     sleep(1000);
+    console.log("输入回车");
 
     // 查找“安装”或“更新”等按钮
     let appPage = textMatches(/Install|Open|Update/).findOne(10000);
