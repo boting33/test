@@ -21,20 +21,9 @@ function main() {
 
     // 查找搜索按钮
     let searchIcon = text("搜索").findOne(5000);
-
-    console.log("搜索按钮信息:");
-    console.log(searchIcon.toString());  
-
-    let parent = searchIcon.parent();
-    console.log("搜索按钮父元素信息:");
-    console.log(parent.toString());  
-
-    let grandParent = parent.parent();
-    console.log("搜索按钮父元素的父元素信息:");
-    console.log(grandParent.toString());  
-
+    
     // 查找可点击区域
-    let clickableRegion = parent;
+    let clickableRegion = searchIcon.parent();
     console.log("搜索按钮父元素是否可点击:", clickableRegion.clickable());
     if (clickableRegion) {
         console.log("点击搜索按钮的可点击区域...");
@@ -47,6 +36,7 @@ function main() {
 
     // 输入包名
     console.log("输入包名: " + pkgName);
+    return;
     setText(pkgName);
     sleep(1000);
     press("enter");
