@@ -7,7 +7,7 @@
  */
 
 // ========== 可配置参数 ==========
-const pkgName = "com.roblox.client";  // 想查询的包名
+const pkgName = "com.whatsapp";  // 想查询的包名
 const googlePlayPkg = "com.android.vending"; // Google Play 包名
 
 // ========== 主逻辑 ==========
@@ -52,7 +52,10 @@ function main() {
         console.error("未找到第一个搜索结果应用");
     }
 
-    let appDetail = textMatches(/关于此应用|关于此游戏/).findOne(5000);
+    let appDetail = text("关于此应用").findOne(5000);
+    if (!appDetail) {
+        appDetail = text("关于此游戏").findOne(5000);
+    }
     appDetailParent = appDetail.parent();
     appDetailParent.click();
     sleep(4000);
