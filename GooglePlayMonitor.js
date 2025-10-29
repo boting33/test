@@ -38,7 +38,7 @@ function main() {
     let searchContent = className("android.widget.EditText").findOne(5000)
     searchContent.setText(pkgName);
     sleep(1000);
-    searchContent.press("enter");
+    searchContent.input("\n");
     sleep(5000);
 
     // 查找“安装”或“更新”等按钮
