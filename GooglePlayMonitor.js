@@ -20,7 +20,7 @@ function main() {
     sleep(5000);
 
     // 尝试通过描述符查找搜索框
-    let searchIcon = descContains("搜索").findOne(10000);
+    let searchIcon = text("搜索").findOne(10000);
     if (!searchIcon) {
         console.error("未找到搜索按钮，请确保设备登录了 Google Play！");
         return;
