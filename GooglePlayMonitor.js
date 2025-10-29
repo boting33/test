@@ -18,24 +18,35 @@ function main() {
     // 启动 Google Play
     app.launch(googlePlayPkg);
     sleep(5000);
-    console.log("启动 Google Play 应用商店...");
 
     // 查找搜索按钮
     let searchIcon = text("搜索").findOne(5000);
 
     if (searchIcon) {
         console.log("搜索按钮信息:");
-        console.log(searchIcon.dump()); // 打印当前元素的所有信息
+        console.log(searchIcon.toString());  // 打印当前元素的信息
 
         let parent = searchIcon.parent();
         console.log("搜索按钮父元素信息:");
-        console.log(parent.dump()); // 打印父元素信息
+        console.log(parent.toString());  // 打印父元素信息
 
         let grandParent = parent.parent();
         console.log("搜索按钮父元素的父元素信息:");
-        console.log(grandParent.dump()); // 打印父元素的父元素信息
+        console.log(grandParent.toString());  // 打印父元素的父元素信息
     } else {
         console.error("未找到搜索按钮");
+    }
+
+
+    // 查找可点击区域（indexInParent(2)）
+    let clickableRegion = text("搜索").indexInParent(2).findOne(5000);
+    if (clickableRegion) {
+        console.log("点击搜索按钮的可点击区域...");
+        clickableRegion.click();
+        sleep(2000);
+    } else {
+        console.error("未找到搜索按钮的可点击区域");
+        return;
     }
 
     // 输入包名
