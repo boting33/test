@@ -20,8 +20,8 @@ function main() {
     sleep(5000);
     console.log("启动 Google Play 应用商店...");
 
-    // 查找可点击区域（indexInParent(2)）
-    let clickableRegion = text("搜索").indexInParent(2).findOne(5000);
+    // 查找可点击区域
+    let clickableRegion = text("搜索").findOne(5000).parent().parent();
     if (clickableRegion) {
         console.log("点击搜索按钮的可点击区域...");
         clickableRegion.click();
