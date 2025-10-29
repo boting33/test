@@ -22,24 +22,19 @@ function main() {
     // 查找搜索按钮
     let searchIcon = text("搜索").findOne(5000);
 
-    if (searchIcon) {
-        console.log("搜索按钮信息:");
-        console.log(searchIcon.toString());  // 打印当前元素的信息
+    console.log("搜索按钮信息:");
+    console.log(searchIcon.toString());  
 
-        let parent = searchIcon.parent();
-        console.log("搜索按钮父元素信息:");
-        console.log(parent.toString());  // 打印父元素信息
+    let parent = searchIcon.parent();
+    console.log("搜索按钮父元素信息:");
+    console.log(parent.toString());  
 
-        let grandParent = parent.parent();
-        console.log("搜索按钮父元素的父元素信息:");
-        console.log(grandParent.toString());  // 打印父元素的父元素信息
-    } else {
-        console.error("未找到搜索按钮");
-    }
+    let grandParent = parent.parent();
+    console.log("搜索按钮父元素的父元素信息:");
+    console.log(grandParent.toString());  
 
-
-    // 查找可点击区域（indexInParent(2)）
-    let clickableRegion = text("搜索").indexInParent(2).findOne(5000);
+    // 查找可点击区域
+    let clickableRegion = parent;
     if (clickableRegion) {
         console.log("点击搜索按钮的可点击区域...");
         clickableRegion.click();
