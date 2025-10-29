@@ -39,8 +39,9 @@ function main() {
     searchContent.setText(pkgName);
     sleep(1000);
 
-    console.log("按下回车键...");
-    KeyCode(66);
+    console.log("执行输入法回车 imeEnter()");
+    imeEnter();
+    
     sleep(5000);
 
     // 查找“安装”或“更新”等按钮
