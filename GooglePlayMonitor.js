@@ -24,16 +24,10 @@ function main() {
     
     // 查找可点击区域
     let clickableRegion = searchIcon.parent();
-    console.log("搜索按钮父元素是否可点击:", clickableRegion.clickable());
-    if (clickableRegion) {
-        console.log("点击搜索按钮的可点击区域...");
-        clickableRegion.click();
-        sleep(2000);
-    } else {
-        console.error("未找到搜索按钮的可点击区域");
-        return;
-    }
-
+    console.log("点击搜索按钮的可点击区域...");
+    clickableRegion.click();
+    sleep(2000);
+    
     // 输入包名
     console.log("输入包名: " + pkgName);
     return;
