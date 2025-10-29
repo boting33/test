@@ -54,10 +54,12 @@ function main() {
     let appDetail = text("关于此应用").findOne(5000);
     if (!appDetail) {
         appDetail = text("关于此游戏").findOne(5000);
-        console.log("appDetail2: " + appDetail.toString());
+        console.log("appDetail: ");
+        console.log(appDetail.toString());
     }
     appDetailParent = appDetail.parent();
-    console.log("appDetailParent: " + appDetailParent.toString());
+    console.log("appDetailParent: ");
+    console.log(appDetailParent.toString());
     appDetailParent.click();
     sleep(4000);
 
