@@ -27,11 +27,15 @@ function main() {
     console.log("点击搜索按钮的可点击区域...");
     clickableRegion.click();
     sleep(2000);
+
+    let searchBox = text("搜索应用和游戏").findOne(5000);
+    searchBox.parent.click();
+    sleep(2000);
     
     // 输入包名
     console.log("输入包名: " + pkgName);
-    return;
-    setText(pkgName);
+    let searchContent = className("android.widget.EditText").findOne(5000)
+    searchContent.setText(pkgName);
     sleep(1000);
     press("enter");
     sleep(5000);
