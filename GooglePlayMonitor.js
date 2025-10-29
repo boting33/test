@@ -29,7 +29,10 @@ function main() {
     sleep(2000);
 
     let searchBox = text("搜索应用和游戏").findOne(5000);
-    searchBox.parent.click();
+    console.log("searchBox..." + searchBox.toString());
+    let searchBoxParent = searchBox.parent();
+    console.log("searchBoxParent..." + searchBoxParent.toString());
+    searchBoxParent.click();
     sleep(2000);
     
     // 输入包名
