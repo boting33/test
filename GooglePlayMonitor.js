@@ -53,14 +53,12 @@ function main() {
     }
 
     let appDetail = text("关于此应用").findOne(5000);
-    console.log("appDetail:" + appDetail.toString());
     appDetailParent = appDetail.parent();
-    console.log("appDetailParent:" + appDetailParent.toString());
     appDetailParent.click();
     sleep(4000);
 
-    // 查找 "版本" 或 "Version"
-    let versionLabel = textMatches(/版本|Version/i).findOne(5000);
+    // 查找 "版本"
+    let versionLabel = id("0_resource_name_obfuscated").className("android.widget.TextView").text("版本").depth(21).findOne();
 
     if (versionLabel) {
         let parent = versionLabel.parent();
