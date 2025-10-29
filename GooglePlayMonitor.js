@@ -35,6 +35,7 @@ function main() {
 
     // 查找可点击区域
     let clickableRegion = parent;
+    console.log("搜索按钮父元素是否可点击:", clickableRegion.clickable());
     if (clickableRegion) {
         console.log("点击搜索按钮的可点击区域...");
         clickableRegion.click();
