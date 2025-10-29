@@ -7,7 +7,7 @@
  */
 
 // ========== 可配置参数 ==========
-const pkgName = "com.play.rosea";  // 想查询的包名
+const pkgName = "com.roblox.client";  // 想查询的包名
 const googlePlayPkg = "com.android.vending"; // Google Play 包名
 
 // ========== 主逻辑 ==========
@@ -50,17 +50,39 @@ function main() {
     } else {
         console.error("未找到第一个搜索结果应用");
     }
-    sleep(8000); 
-    let appDetail = text("关于此应用").findOne(5000);
-    if (!appDetail) {
-        appDetail = textContains("关于此游戏").findOne(5000);
-        console.log("appDetail: ");
-        console.log(appDetail.toString());
+    sleep(5000); 
+
+    // 找到可滚动区域
+    let scrollableArea = scrollable().findOne(5000);
+    if (!scrollableArea) {
+        console.error("未找到可滚动区域");
+        return;
     }
-    appDetailParent = appDetail.parent();
-    console.log("appDetailParent: ");
-    console.log(appDetailParent.toString());
-    appDetailParent.click();
+
+    // 循环滚动查找文本
+    let appDetail = null;
+    let maxScrollTimes = 10; // 最多滚动10次
+    for (let i = 0; i < maxScrollTimes; i++) {
+        appDetail = text("关于此应用").findOne(1000);
+        if (!appDetail) {
+            appDetail = textContains("关于此游戏").findOne(1000);
+        }
+        if (appDetail) {
+            console.log("找到元素:", appDetail.text());
+            break;
+        }
+        scrollableArea.scrollForward(); // 向下滚动
+        sleep(500);
+    }
+
+    if (!appDetail) {
+        console.error("未找到“关于此应用/游戏”");
+    } else {
+        let appDetailParent = appDetail.parent();
+        console.log("appDetailParent:", appDetailParent.toString());
+        appDetailParent.click();
+    }
+
     sleep(4000);
 
     // 查找 "版本"
