@@ -53,7 +53,9 @@ function main() {
     }
 
     let appDetail = text("关于此应用").findOne(5000);
+    console.log("appDetail:" + appDetail.toString());
     appDetailParent = appDetail.parent();
+    console.log("appDetailParent:" + appDetailParent.toString());
     appDetailParent.click();
     sleep(4000);
 
