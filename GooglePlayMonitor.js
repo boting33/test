@@ -7,11 +7,18 @@
  */
 
 // ========== 可配置参数 ==========
-const pkgName = "com.roblox.client";  // 想查询的包名
-const googlePlayPkg = "com.android.vending"; // Google Play 包名
+// 任务id
+var globalTaskId = null;
+// 想查询的包名
+var pkgName = null;
+// Google Play 包名
+var googlePlayPkg = "com.android.vending"; 
 
 // ========== 主逻辑 ==========
 function main() {
+    // 加载配置
+    loadConfig();
+    
     console.show();
     console.log("启动 Google Play 应用商店...");
 
@@ -49,6 +56,7 @@ function main() {
         firstApp.click();
     } else {
         console.error("未找到第一个搜索结果应用");
+        reportResult(false, "未找到第一个搜索结果应用");
     }
     sleep(2000); 
 
@@ -56,6 +64,7 @@ function main() {
     let scrollableArea = scrollable().findOne(5000);
     if (!scrollableArea) {
         console.error("未找到可滚动区域");
+        reportResult(false, "未找到可滚动区域/游戏");
         return;
     }
 
@@ -78,7 +87,8 @@ function main() {
     }
 
     if (!appDetail) {
-        console.error("未找到“关于此应用/游戏”");
+        console.error("未找到关于此应用/游戏");
+        reportResult(false, "未找到关于此应用/游戏");
     } else {
         let appDetailParent = appDetail.parent();
         appDetailParent.click();
@@ -91,6 +101,48 @@ function main() {
     let versionLabelParent = versionLabel.parent();
     let versionText = versionLabelParent.child(1).text();
     console.log("应用版本号: " + versionText);
+    reportResult(true, versionText);
+}
+
+function loadConfig() {
+    try {
+      if (typeof engines !== "undefined" && engines.myEngine && engines.myEngine().execArgv) {
+        var execArgv = engines.myEngine().execArgv;
+  
+        if (execArgv && execArgv.task_id) {
+          globalTaskId = execArgv.task_id;
+        }
+  
+        if (execArgv && execArgv.template_params) {
+          var config = execArgv.template_params;
+          pkgName = config.getString("pkg_name");
+          console.log("配置加载成功: pkgName = " + pkgName);
+          return true;
+        }
+      }
+      console.warn("获取pkgName配置失败");
+      return false;
+    } catch (error) {
+      console.error("加载配置失败:", error);
+      return false;
+    }
+  }
+
+  function reportResult(isSuccess, message) {
+    try {
+        if (globalTaskId && typeof scriptUtils !== 'undefined' && scriptUtils.sendTaskResult) {
+            var resultMap = {
+                "status": isSuccess ? "success" : "failed",
+                "result": message,
+                "task_id": globalTaskId
+            };
+            
+            console.log("上报结果:", resultMap);
+            scriptUtils.sendTaskResult(resultMap);
+        }
+    } catch (e) {
+        console.error("上报结果时出错:", e.message);
+    }
 }
 
 // ========== 启动 ==========
