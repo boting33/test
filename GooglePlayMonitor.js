@@ -138,7 +138,7 @@ function loadConfig() {
             };
             
             console.log("上报结果:", resultMap);
-            scriptUtils.sendTaskResult(resultMap);
+            scriptUtils.reportLog(globalTaskId, JSON.stringify(resultMap));
         }
     } catch (e) {
         console.error("上报结果时出错:", e.message);
