@@ -50,14 +50,32 @@ function main() {
     imeEnter();
     sleep(2000);
 
-    let firstApp = className("android.view.View").clickable(true).findOne(5000);
-    if (firstApp) {
-        console.log("找到第一个应用卡片，准备点击...");
-        firstApp.click();
+    // 检查是否存在赞助商广告
+    let hasAd = text('赞助商广告').findOne(3000);
+    if (hasAd) {
+        console.log("检测到赞助商广告，选择第二个应用卡片");
+        // 找到所有可点击的应用卡片
+        let allApps = className("android.view.View").clickable(true).find();
+        if (allApps.length >= 2) {
+            let targetApp = allApps[1];
+            console.log("找到第二个应用卡片，准备点击...");
+            targetApp.click();
+        } else {
+            console.error("赞助商广告存在，但未找到足够的应用卡片");
+            reportResult(false, "赞助商广告存在，但未找到足够的应用卡片");
+        }
     } else {
-        console.error("未找到第一个搜索结果应用");
-        reportResult(false, "未找到第一个搜索结果应用");
+        console.log("未检测到赞助商广告，选择第一个应用卡片");
+        let firstApp = className("android.view.View").clickable(true).findOne(5000);
+        if (firstApp) {
+            console.log("找到第一个应用卡片，准备点击...");
+            firstApp.click();
+        } else {
+            console.error("未找到第一个搜索结果应用");
+            reportResult(false, "未找到第一个搜索结果应用");
+        }
     }
+
     sleep(2000); 
 
     // 找到可滚动区域
@@ -138,12 +156,12 @@ function loadConfig() {
             };
             
             console.log("上报结果:", resultMap);
-            scriptUtils.reportLog(globalTaskId, JSON.stringify(resultMap));
+            c
         }
     } catch (e) {
         console.error("上报结果时出错:", e.message);
     }
-}
+ }
 
 // ========== 启动 ==========
 main();
