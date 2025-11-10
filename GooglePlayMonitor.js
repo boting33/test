@@ -56,8 +56,8 @@ function main() {
         console.log("检测到赞助商广告，选择第二个应用卡片");
         // 找到所有可点击的应用卡片
         let allApps = className("android.view.View").clickable(true).find();
-        if (allApps.length >= 2) {
-            let targetApp = allApps[1];
+        if (allApps.length >= 3) {
+            let targetApp = allApps[2];
             console.log("找到第二个应用卡片，准备点击...");
             targetApp.click();
         } else {
