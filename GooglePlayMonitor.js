@@ -154,8 +154,8 @@ function loadConfig() {
                 "result": message,
                 "task_id": globalTaskId
             };
-            
             console.log("上报结果:", resultMap);
+            scriptUtils.reportLog(globalTaskId, JSON.stringify(resultMap));
         }
     } catch (e) {
         console.error("上报结果时出错:", e.message);
