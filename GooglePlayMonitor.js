@@ -156,7 +156,6 @@ function loadConfig() {
             };
             
             console.log("上报结果:", resultMap);
-            c
         }
     } catch (e) {
         console.error("上报结果时出错:", e.message);
